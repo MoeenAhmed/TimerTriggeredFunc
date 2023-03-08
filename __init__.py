@@ -7,11 +7,11 @@ import datetime
 import smtplib
 
 def SendEmail(notificationMsg) :
-    gmail_user = 'your_email@gmail.com'
-    gmail_password = 'your_password'
+    gmail_user = 'moeenahmed769@gmail.com'
+    gmail_password = 'Moeen@123'
 
     sent_from = gmail_user
-    to = ['person_a@gmail.com', 'person_b@gmail.com']
+    to = ['moeenahmed769@gmail.com']
     subject = 'Secret Expired Notification'
     body = notificationMsg
 
@@ -33,13 +33,9 @@ def SendEmail(notificationMsg) :
     except Exception as ex:
         print ("Something went wrong….",ex)
 
-def main(mytimer: func.TimerRequest) -> None:
-    utc_timestamp = datetime.datetime.utcnow().replace(
-        tzinfo=datetime.timezone.utc).isoformat()
 
-    # if mytimer.past_due:
-    #     logging.info('The timer is past due!')
-
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
 
     tenantId = ""
     clientId = ""
@@ -69,6 +65,4 @@ def main(mytimer: func.TimerRequest) -> None:
 
     if not notificationMsg:
         print ("Secret that expired….",notificationMsg)
-        SendEmail(notificationMsg)
-
-    # logging.info('Python timer trigger function ran at %s', utc_timestamp)
+        SendEmail("notificationMsg")
